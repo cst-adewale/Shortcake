@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-router-dom';
 import { LayoutDashboard, Upload, Database, Activity, FileText } from 'lucide-react';
+import AuthPage from './pages/AuthPage';
 
 // Placeholder Components for Pages
 const Dashboard = () => <div className="p-8"><h1>Dashboard</h1><p>Analytics and overview go here.</p></div>;
@@ -8,10 +9,10 @@ const GenerateData = () => <div className="p-8"><h1>Generate Synthetic Data</h1>
 const RunAudit = () => <div className="p-8"><h1>Run Audit</h1><p>Select dataset and attributes to audit.</p></div>;
 const Reports = () => <div className="p-8"><h1>Reports</h1><p>Downloadable audit reports.</p></div>;
 
-function App() {
+// Layout component for authenticated pages
+function DashboardLayout() {
   return (
-    <Router>
-      <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-50">
         {/* Sidebar */}
         <aside className="w-64 bg-white border-r border-gray-200">
           <div className="p-6">
@@ -39,15 +40,27 @@ function App() {
 
         {/* Main Content */}
         <main className="flex-1 overflow-y-auto">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/upload" element={<UploadDataset />} />
-            <Route path="/synthesize" element={<GenerateData />} />
-            <Route path="/audit" element={<RunAudit />} />
-            <Route path="/reports" element={<Reports />} />
-          </Routes>
+          <Outlet />
         </main>
       </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/auth" element={<AuthPage />} />
+        
+        {/* Protected Routes */}
+        <Route path="/" element={<DashboardLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="upload" element={<UploadDataset />} />
+          <Route path="synthesize" element={<GenerateData />} />
+          <Route path="audit" element={<RunAudit />} />
+          <Route path="reports" element={<Reports />} />
+        </Route>
+      </Routes>
     </Router>
   );
 }
