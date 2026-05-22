@@ -12,37 +12,48 @@ const Reports = () => <div className="p-8"><h1>Reports</h1><p>Downloadable audit
 // Layout component for authenticated pages
 function DashboardLayout() {
   return (
-    <div className="flex h-screen bg-gray-50">
-        {/* Sidebar */}
-        <aside className="w-64 bg-white border-r border-gray-200">
-          <div className="p-6">
-            <h1 className="text-xl font-bold text-green-700">L.E.B.A.</h1>
-            <p className="text-xs text-gray-500 mt-1">Loan Eligibility Bias Audit</p>
-          </div>
-          <nav className="mt-6 px-4 space-y-2">
-            <Link to="/" className="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition-colors">
-              <LayoutDashboard size={20} /> Dashboard
-            </Link>
-            <Link to="/upload" className="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition-colors">
-              <Upload size={20} /> Upload Data
-            </Link>
-            <Link to="/synthesize" className="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition-colors">
-              <Database size={20} /> Synthesize Data
-            </Link>
-            <Link to="/audit" className="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition-colors">
-              <Activity size={20} /> Run Audit
-            </Link>
-            <Link to="/reports" className="flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition-colors">
-              <FileText size={20} /> Reports
-            </Link>
-          </nav>
-        </aside>
+    <div className="flex h-screen bg-[#0a0f16] text-white overflow-hidden font-sans">
+      {/* Sidebar */}
+      <aside className="w-64 bg-white/5 backdrop-blur-xl border-r border-white/10 flex flex-col relative z-20">
+        <div className="p-6 border-b border-white/10">
+          <h1 className="text-2xl font-bold text-primary flex items-center gap-2 tracking-tight">
+            <Activity className="w-6 h-6" /> L.E.B.A.
+          </h1>
+          <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Bias Audit Platform</p>
+        </div>
+        <nav className="flex-1 px-4 py-6 space-y-2">
+          <Link to="/" className="flex items-center gap-3 px-4 py-3 text-gray-300 rounded-xl hover:bg-primary/20 hover:text-primary transition-all group">
+            <LayoutDashboard size={20} className="group-hover:scale-110 transition-transform" /> Dashboard
+          </Link>
+          <Link to="/upload" className="flex items-center gap-3 px-4 py-3 text-gray-300 rounded-xl hover:bg-primary/20 hover:text-primary transition-all group">
+            <Upload size={20} className="group-hover:scale-110 transition-transform" /> Upload Data
+          </Link>
+          <Link to="/synthesize" className="flex items-center gap-3 px-4 py-3 text-gray-300 rounded-xl hover:bg-primary/20 hover:text-primary transition-all group">
+            <Database size={20} className="group-hover:scale-110 transition-transform" /> Synthesize Data
+          </Link>
+          <Link to="/audit" className="flex items-center gap-3 px-4 py-3 text-gray-300 rounded-xl hover:bg-primary/20 hover:text-primary transition-all group">
+            <Activity size={20} className="group-hover:scale-110 transition-transform" /> Run Audit
+          </Link>
+          <Link to="/reports" className="flex items-center gap-3 px-4 py-3 text-gray-300 rounded-xl hover:bg-primary/20 hover:text-primary transition-all group">
+            <FileText size={20} className="group-hover:scale-110 transition-transform" /> Reports
+          </Link>
+        </nav>
+        <div className="p-4 border-t border-white/10">
+           <Link to="/auth" className="flex items-center justify-center gap-2 w-full py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm text-gray-400 hover:text-white transition-colors">
+              Sign Out
+           </Link>
+        </div>
+      </aside>
 
-        {/* Main Content */}
-        <main className="flex-1 overflow-y-auto">
+      {/* Main Content Area */}
+      <main className="flex-1 relative overflow-y-auto bg-gradient-to-br from-[#0a0f16] via-[#0d1620] to-[#0f231e]">
+        {/* Background glow */}
+        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="relative z-10 p-8 min-h-full">
           <Outlet />
-        </main>
-      </div>
+        </div>
+      </main>
+    </div>
   );
 }
 
