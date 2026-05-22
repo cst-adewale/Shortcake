@@ -1,13 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-router-dom';
 import { LayoutDashboard, Upload, Database, Activity, FileText } from 'lucide-react';
 import AuthPage from './pages/AuthPage';
-
-// Placeholder Components for Pages
-const Dashboard = () => <div className="p-8"><h1>Dashboard</h1><p>Analytics and overview go here.</p></div>;
-const UploadDataset = () => <div className="p-8"><h1>Upload Dataset</h1><p>Drag and drop CSV files here.</p></div>;
-const GenerateData = () => <div className="p-8"><h1>Generate Synthetic Data</h1><p>Controls for simulating bias go here.</p></div>;
-const RunAudit = () => <div className="p-8"><h1>Run Audit</h1><p>Select dataset and attributes to audit.</p></div>;
-const Reports = () => <div className="p-8"><h1>Reports</h1><p>Downloadable audit reports.</p></div>;
+import Dashboard from './pages/Dashboard';
+import UploadDataset from './pages/UploadDataset';
+import GenerateData from './pages/GenerateData';
+import RunAudit from './pages/RunAudit';
+import Reports from './pages/Reports';
 
 // Layout component for authenticated pages
 function DashboardLayout() {
