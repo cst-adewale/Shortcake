@@ -105,7 +105,7 @@ export default function Dashboard() {
                   dataKey="value"
                   stroke="none"
                 >
-                  {mockRiskData.map((entry, index) => (
+                  {mockRiskData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
